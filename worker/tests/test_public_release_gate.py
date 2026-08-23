@@ -74,6 +74,8 @@ def _run_gate(
             "RELEASE_GATE_LOG": str(log_path),
         }
     )
+    environment.pop("CONNECTOR_REDISTRIBUTION_APPROVED", None)
+    environment.pop("PUBLIC_LICENSE_APPROVED", None)
     if approvals[0]:
         environment["CONNECTOR_REDISTRIBUTION_APPROVED"] = "true"
     if approvals[1]:
