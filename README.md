@@ -305,7 +305,7 @@ del worker usan siempre Python 3.12. Ruff solo comprueba: si encuentra un
 problema, el hook falla y deja el árbol sin modificar para que la corrección
 sea una decisión visible.
 
-El piloto privado está autorizado y es el modo predeterminado del gate total:
+El modo `private` es el predeterminado del gate total:
 
 ```fish
 scripts/verify_public_release.sh
@@ -316,7 +316,7 @@ tests, build y auditorías npm completas y de producción; controles del worker;
 construcción real de Docker; recreación, pruebas, integraciones y asesores de
 Supabase local; Gitleaks y neutralidad tanto del árbol como del archivo Git
 exportable. Que termine en verde demuestra que el
-snapshot es técnicamente apto para el piloto privado. **No concede derechos de
+snapshot es técnicamente apto para una instalación privada. **No concede derechos de
 redistribución, no elige una licencia y no cambia la visibilidad del
 repositorio.**
 
@@ -335,6 +335,10 @@ Si falta cualquiera de las dos aprobaciones, el gate falla antes de ejecutar
 herramientas. Incluso con ambas y todos los controles técnicos en verde, hacer
 público el repositorio sigue siendo una acción humana separada y fuera de este
 script.
+
+Para esta distribución, la redistribución del código de los conectores externos
+y la licencia MIT fueron aprobadas expresamente antes de ejecutar el gate
+público.
 
 ## Desarrollo local
 
@@ -364,3 +368,10 @@ variables en su terminal antes de ejecutar `uv run`.
 Consulte [SECURITY.md](SECURITY.md) para reportar una vulnerabilidad. Si una
 credencial se expone, revóquela o rótela en su sistema de origen antes de
 investigar; eliminar el texto del repositorio no invalida el secreto.
+
+## Licencia
+
+El proyecto se distribuye bajo la [licencia MIT](LICENSE). Puede usarlo,
+modificarlo y redistribuirlo manteniendo el aviso de licencia. Se entrega sin
+garantías y cada instalación es responsable de sus conectores, credenciales y
+datos.
