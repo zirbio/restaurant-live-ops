@@ -1,0 +1,15 @@
+# Servicio "backfill": recupera los días que faltan o descuadran.
+#
+# Railway admite UN cron por servicio, así que este es el tercer servicio que
+# comparte la misma imagen. Apunta a este fichero en Settings → Config-as-code.
+# Necesita la configuración completa de la fuente de venta y SUPABASE_DB_URL.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "worker/Dockerfile"
+
+[deploy]
+startCommand = "/app/.venv/bin/restaurant-live-ops-worker backfill --days 14"
+# Cada instalación debe ajustar el cron para ejecutarlo después de su cierre diario.
+cronSchedule = "6 6 * * *"
+restartPolicyType = "NEVER"

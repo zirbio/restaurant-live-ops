@@ -1,0 +1,15 @@
+# Servicio de venta: captura la venta del día cada 12 minutos.
+#
+# Railway admite UN cron por servicio, así que hay dos ficheros de
+# configuración y dos servicios que comparten la misma imagen. Cada servicio
+# apunta al suyo en Settings → Config-as-code.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "worker/Dockerfile"
+
+[deploy]
+startCommand = "/app/.venv/bin/restaurant-live-ops-worker sales"
+# El cron está expresado en UTC; cada instalación debe ajustarlo a su horario.
+cronSchedule = "*/12 0-3,5-23 * * *"
+restartPolicyType = "NEVER"

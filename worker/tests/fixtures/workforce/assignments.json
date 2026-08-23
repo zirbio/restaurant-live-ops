@@ -1,0 +1,42 @@
+[
+  {
+    "person": "EMP-TEST-001",
+    "day": "2030-01-15",
+    "virtual": false,
+    "presence": {
+      "worked": true,
+      "timeFrames": [
+        {
+          "eventId": "EVENT-TEST-001",
+          "startMinuteDay": 480,
+          "duration": 60,
+          "paid": true,
+          "worked": true,
+          "location": {
+            "name": "Test station"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "person": "EMP-TEST-002",
+    "day": "2030-01-15",
+    "virtual": false,
+    "presence": {
+      "worked": false,
+      "timeFrames": [
+        {
+          "eventId": "EVENT-TEST-002",
+          "startMinuteDay": 600,
+          "duration": 60,
+          "paid": true,
+          "worked": true,
+          "location": {
+            "name": "Test station"
+          }
+        }
+      ]
+    }
+  }
+]

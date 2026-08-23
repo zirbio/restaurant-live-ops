@@ -1,0 +1,9 @@
+[
+  {
+    "eventId": "EVENT-TEST-001",
+    "employeeId": "EMP-TEST-001",
+    "type": "WORK",
+    "checkIn": "2030-01-15T07:00:00.000Z",
+    "checkOut": "2030-01-15T08:00:00.000Z"
+  }
+]

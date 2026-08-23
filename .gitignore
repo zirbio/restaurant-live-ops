@@ -1,0 +1,33 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+dist/
+build/
+.DS_Store
+
+# PWA
+app/dist/
+app/dev-dist/
+
+# Local Netlify folder
+.netlify
+.docker
+
+# Estado local de Supabase CLI
+supabase/.temp/
+
+# Capturas del navegador de pruebas
+.playwright-mcp/
+
+# Informes locales de ejecución del plan de saneamiento
+.superpowers/sdd/

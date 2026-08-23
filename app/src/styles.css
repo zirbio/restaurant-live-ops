@@ -1,0 +1,1352 @@
+/* Identidad neutral: azul para navegación y colores semánticos para estado. */
+
+:root {
+  --ink: #14171c;
+  --muted: #5c6473;
+  --dim: #8b93a3;
+  --faint: #b7bdc7;
+  --line: #e5e7eb;
+  --hairline: #eef0f3;
+  --bg: #ffffff;
+  --panel: #f7f8fa;
+  --accent: #2563eb;
+  --pos: #157f4b;
+  --warn: #8a6b00;
+  --neg: #b4531b;
+  --live: #eff6ff;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.ta-r {
+  text-align: right;
+}
+.strong {
+  font-weight: 600;
+}
+.muted {
+  color: var(--muted);
+}
+.dim {
+  color: var(--faint);
+}
+.is-pos {
+  color: var(--pos);
+}
+.is-neg {
+  color: var(--neg);
+}
+.light-ok {
+  color: var(--pos);
+}
+.light-warn {
+  color: var(--warn);
+}
+.light-bad {
+  color: var(--neg);
+}
+
+/* ---------- Pantallas de estado ---------- */
+
+.splash {
+  padding: 64px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+}
+.splash--error {
+  color: var(--neg);
+}
+.splash__detail {
+  color: var(--muted);
+  font-size: 13px;
+  font-family: var(--mono);
+  margin-top: 8px;
+  word-break: break-word;
+}
+
+.configurationWarning {
+  margin: 12px 18px 0;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--neg) 30%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--neg) 7%, white);
+  color: var(--neg);
+  font-size: 14px;
+}
+
+.configurationWarning__detail {
+  margin-top: 4px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  word-break: break-word;
+}
+
+/* ---------- Acceso ---------- */
+
+.login {
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 72px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.login__title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 8px 0 0;
+}
+.login__sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--dim);
+  margin: 0 0 24px;
+}
+.login__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.login__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+.login__input {
+  font: inherit;
+  font-size: 16px; /* 16px evita que iOS haga zoom al enfocar */
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 44px;
+}
+.login__button {
+  min-height: 44px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.login__button:disabled {
+  opacity: 0.6;
+}
+.login__input--code {
+  font-family: var(--mono);
+  font-size: 26px;
+  letter-spacing: 0.3em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.login__hint {
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--warn);
+  background: var(--live);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 0;
+}
+.login__link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  min-height: 44px;
+  text-decoration: underline;
+}
+.login__ok,
+.login__error {
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+.login__error {
+  color: var(--neg);
+}
+
+/* ---------- Cabecera ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.topbar__kicker {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--dim);
+}
+.topbar__clock {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- Frescura ---------- */
+
+.freshness {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--hairline);
+}
+.freshness__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pos);
+  flex: none;
+}
+.freshness--bad {
+  color: var(--neg);
+}
+.freshness--bad .freshness__dot {
+  background: var(--neg);
+}
+.freshness__reason {
+  color: var(--muted);
+}
+
+/* ---------- Pestañas ---------- */
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding: 12px 18px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+.tab {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 10px 12px;
+  min-height: 44px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: #fff;
+}
+.tab.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Cifra grande ---------- */
+
+.hero {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.hero__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.hero__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+.hero__value {
+  font-family: var(--mono);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+.hero__delta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.hero__deltaValue {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-variant-numeric: tabular-nums;
+}
+.hero__deltaValue.is-pos {
+  background: rgb(21 127 75 / 10%);
+}
+.hero__deltaValue.is-neg {
+  background: rgb(180 83 27 / 10%);
+}
+.hero__deltaPct {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.hero__barTrack {
+  position: relative;
+  height: 8px;
+  border-radius: 4px;
+  background: #e2e5ea;
+  overflow: visible;
+}
+.hero__barFill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent);
+}
+.hero__barMark {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--ink);
+}
+.hero__barLabels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  margin-top: 6px;
+}
+
+/* ---------- Tarjetas por local ---------- */
+
+.cards {
+  padding: 14px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--pos);
+  border-radius: 8px;
+  background: #fff;
+  padding: 13px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  box-shadow: 0 1px 2px rgb(20 23 28 / 4%);
+}
+.card--neg {
+  border-left-color: var(--neg);
+}
+.card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.card__name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.card__title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.card__meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+}
+.card__delta {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-variant-numeric: tabular-nums;
+  /*
+   * La cifra del día no se parte nunca. Sin esto, con un nombre largo el euro
+   * caía a una segunda línea ("+1.239" arriba y "€" debajo) y la pastilla
+   * crecía a dos alturas. Va en el diseño y faltaba en el CSS.
+   */
+  white-space: nowrap;
+  flex: none;
+}
+.card__delta.is-pos {
+  background: rgb(21 127 75 / 10%);
+}
+.card__delta.is-neg {
+  background: rgb(180 83 27 / 10%);
+}
+.card__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.card__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.card__cellLabel {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+}
+.card__cellValue {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.card__cellValue.strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.card__times {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.time {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  background: var(--panel);
+}
+.time--ok {
+  background: rgb(21 127 75 / 9%);
+}
+.time--warn {
+  background: rgb(138 107 0 / 10%);
+}
+.time--bad {
+  background: rgb(180 83 27 / 10%);
+}
+.time__label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.time__value {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.time--ok .time__value {
+  color: var(--pos);
+}
+.time--warn .time__value {
+  color: var(--warn);
+}
+.time--bad .time__value {
+  color: var(--neg);
+}
+.time--none .time__value {
+  color: var(--faint);
+}
+/*
+ * La curva del día y, debajo, las cintas de tiempos.
+ *
+ * La curva se indenta lo que ocupa la etiqueta de la cinta, para que cada barra
+ * de venta caiga JUSTO sobre su columna de celdas. Sin esa indentación la cinta
+ * queda comprimida contra la curva y la celda de las 21:00 cae bajo la barra de
+ * las 19:00: con 23 horas el desfase pasa de dos columnas, y entonces la cinta
+ * ya no diagnostica ninguna hora, que es justamente para lo que está.
+ */
+.card__curve {
+  --ribbon-label: 30px;
+  --ribbon-gap: 4px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.card__spark {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 34px;
+}
+/* Sin cintas no hay nada con lo que alinearse: la curva va a ancho completo. */
+.card__curve--withRibbons .card__spark {
+  margin-left: calc(var(--ribbon-label) + var(--ribbon-gap));
+}
+.spark {
+  flex: 1;
+  border-radius: 1px;
+  min-height: 2px;
+}
+.spark--pos {
+  background: var(--pos);
+}
+.spark--neg {
+  background: var(--neg);
+}
+.spark--none {
+  background: #e2e5ea;
+}
+.ribbon {
+  display: grid;
+  grid-template-columns: var(--ribbon-label) 1fr;
+  gap: var(--ribbon-gap);
+  align-items: center;
+}
+/* Un respiro extra entre la curva y la primera cinta, que no son lo mismo. */
+.card__spark + .ribbon {
+  margin-top: 3px;
+}
+.ribbon__label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+}
+.ribbon__cells {
+  display: flex;
+  gap: 2px;
+  height: 5px;
+}
+.ribbon__cell {
+  flex: 1;
+  border-radius: 1px;
+}
+.ribbon__cell--ok {
+  background: var(--pos);
+}
+.ribbon__cell--warn {
+  background: var(--warn);
+}
+.ribbon__cell--bad {
+  background: var(--neg);
+}
+/* Hora sin tiempo medido: gris, el mismo de la barra sin venta. */
+.ribbon__cell--none {
+  background: #e2e5ea;
+}
+
+/* ---------- Gráfico horario ---------- */
+
+.detailView {
+  /* Menos margen lateral aquí es más ancho útil para la tabla. */
+  padding: 16px 10px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.chart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.chart__title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+.chart__legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+}
+.chart__key {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+}
+.chart__key--proj {
+  background: #d8dbe1;
+}
+.chart__key--real {
+  background: var(--pos);
+  margin-left: 6px;
+}
+.chart__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 110px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+}
+.chart__slot {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+}
+.chart__bar {
+  flex: 1;
+  border-radius: 1px 1px 0 0;
+}
+.chart__bar--proj {
+  background: #d8dbe1;
+}
+.chart__bar--pos {
+  background: var(--pos);
+}
+.chart__bar--neg {
+  background: var(--neg);
+}
+.chart__now {
+  position: absolute;
+  inset: 0;
+  background: rgb(37 99 235 / 14%);
+  pointer-events: none;
+}
+.chart__axis {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--dim);
+  margin-top: 4px;
+}
+
+/* ---------- Tabla horaria ---------- */
+
+.table {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.table__head,
+.table__row,
+.table__foot {
+  display: grid;
+  /* Las cifras mandan: los márgenes laterales se recortan al mínimo para que
+     los números crezcan sin que la tabla se ensanche ni desborde a 393 px.
+     La columna F/A necesita 52px: su pico de prueba es "25/26 ⚠", incluida
+     la marca de fichaje sin cerrar, y mide 46,7px con esta
+     tipografía (33,4px la cifra, 6,7px el espacio duro y 6,7px el glifo); la
+     celda añade el 1px de borde y los 3px de sangría de .table__sep, así que
+     pide 50,7px y se redondea a 52 para dejar un pelo de holgura, que el
+     triángulo lo pinta una tipografía de reserva y no mide igual en todas.
+     Medido a 393px, que es el iPhone más estrecho en uso. */
+  grid-template-columns: 19px minmax(0, 1fr) minmax(0, 1fr) 45px 33px 52px 33px 33px 35px;
+  width: 100%;
+  padding: 7px 2px;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  align-items: center;
+}
+.table__head {
+  background: var(--panel);
+  font-size: 8px;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.table__row {
+  font-size: 11.5px; /* la cifra, lo más grande que permite el ancho */
+  letter-spacing: -0.02em;
+  padding: 11px 2px; /* alto cómodo para el dedo */
+  border-top: 1px solid var(--hairline);
+  text-align: left;
+}
+.table__row.is-live {
+  background: var(--live);
+}
+.table__row.is-open {
+  background: #f2f4f7;
+}
+.table__hour {
+  font-weight: 600;
+  color: var(--ink);
+}
+.table__hour.is-live {
+  color: var(--warn);
+}
+.table__sep {
+  border-left: 1px solid var(--hairline);
+  padding-left: 3px;
+  /* El espacio duro impide cortar antes de la marca de fichaje sin cerrar,
+     pero la barra de "12/14" sigue siendo punto de corte válido, y el glifo
+     mide más cuando iOS lo pinta como emoji a color. Sin esto, la fila que
+     estrena el aviso se parte en dos líneas y queda más alta que sus vecinas. */
+  white-space: nowrap;
+}
+.table__foot {
+  font-size: 11.5px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  border-top: 1px solid #d5d8de;
+  background: var(--panel);
+}
+.table__note {
+  padding: 10px 12px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--dim);
+  border-top: 1px solid var(--hairline);
+  background: var(--panel);
+}
+.detail {
+  padding: 2px 4px 12px;
+  background: var(--panel);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+.detail__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 7px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 10px;
+  min-width: 0;
+}
+.detail__label {
+  color: var(--dim);
+  letter-spacing: 0.04em;
+  font-size: 9px;
+  /* Sin nowrap: en 375 px las etiquetas largas desbordaban la celda. */
+  overflow-wrap: anywhere;
+}
+.detail__value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.hero__live {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--live);
+  font-family: var(--mono);
+}
+.hero__liveLabel {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--warn);
+}
+.hero__liveValue {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ---------- Pie ---------- */
+
+.footer {
+  padding: 18px;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.logo {
+  display: block;
+  flex: none;
+}
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+.footer__signout {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+/* ---------- Navegador de días ---------- */
+
+.dayNav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: -6px; /* la flecha compensa su propio padding óptico */
+}
+.dayNav__arrow,
+.dayNav__today {
+  position: relative;
+  border: 0;
+  background: none;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+/* El objetivo táctil son 44 px reales, pero se extienden por fuera del flujo
+   para no engordar la cabecera: se usa con el pulgar y en pantalla ocupa poco. */
+.dayNav__arrow::after,
+.dayNav__today::after,
+.dayNav__date::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  min-width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.dayNav__arrow {
+  width: 26px;
+  font-size: 20px;
+  line-height: 1;
+}
+.dayNav__arrow:disabled {
+  opacity: 0.22;
+  cursor: default;
+}
+.dayNav__today {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  margin-left: 6px;
+  opacity: 0.75;
+}
+/* El input nativo se superpone invisible sobre la fecha: al tocarla se abre el
+   calendario del móvil, sin construir uno propio. En el escritorio, donde el
+   clic solo enfoca el campo, lo abre `openDatePicker` (ver DayNav.tsx). */
+.dayNav__date {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.dayNav__label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.dayNav__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* ---------- Conmutador DÍA / MES ---------- */
+
+/* Va pegado abajo, al alcance del pulgar, y por encima de lo que se desplaza.
+   El degradado evita que las cifras se corten en seco contra la pastilla. */
+.viewToggle {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  padding: 14px 18px 16px;
+  background: linear-gradient(rgb(255 255 255 / 0%), var(--bg) 45%);
+}
+.viewToggle__track {
+  display: flex;
+  background: #f2f4f7;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  box-shadow: 0 6px 18px rgb(20 23 28 / 10%);
+}
+.viewToggle__option {
+  flex: 1;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 12px 0;
+  min-height: 44px;
+  border-radius: 999px;
+  color: var(--dim);
+}
+.viewToggle__option.is-active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 3px rgb(20 23 28 / 18%);
+}
+
+/* ---------- Navegador de meses ---------- */
+
+.monthNav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: -6px; /* la flecha compensa su propio padding óptico */
+}
+.monthNav__arrow {
+  position: relative;
+  width: 26px;
+  font-size: 20px;
+  line-height: 1;
+}
+/* Mismo truco que en el navegador de días: 44 px de objetivo táctil que se
+   salen del flujo para no engordar la cabecera. */
+.monthNav__arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  min-width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.monthNav__arrow:disabled {
+  opacity: 0.22;
+  cursor: default;
+}
+.monthNav__label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Comparable interanual y España ---------- */
+
+.yoyStrip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.yoyStrip__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  min-width: 0;
+}
+.yoyStrip__cell + .yoyStrip__cell {
+  border-left: 1px solid var(--hairline);
+}
+.yoyStrip__label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+}
+.yoyStrip__value {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.yoyStrip__value.is-pos {
+  color: var(--pos);
+}
+.yoyStrip__value.is-neg {
+  color: var(--neg);
+}
+.yoyStrip__value.dim {
+  color: var(--faint);
+}
+.yoyStrip__note {
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--dim);
+  margin: 0;
+}
+
+/* ---------- Tabla del mes por restaurante ---------- */
+
+.monthTables {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.monthTable {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+/* Las columnas están medidas para 393 px, el iPhone más estrecho en uso: el
+   nombre se lleva lo que sobra y las cifras mandan sobre el margen. */
+.monthTable__head,
+.monthTable__row,
+.monthTable__foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 68px 52px 56px;
+  gap: 4px;
+  align-items: center;
+  padding: 10px 12px;
+}
+.monthTable__head {
+  background: var(--panel);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  padding: 8px 12px;
+}
+.monthTable__head--mid {
+  border-top: 1px solid var(--hairline);
+}
+/* Productividad y cierre comparten una fila por local. Sin repetir la venta,
+   las cuatro cifras dejan aire suficiente al nombre en 393 px. */
+.monthPerformance__groups,
+.monthTable--performance .monthTable__head,
+.monthTable--performance .monthTable__row,
+.monthTable--performance .monthTable__foot {
+  grid-template-columns: minmax(100px, 1fr) 48px 52px 48px 56px;
+  gap: 3px;
+}
+.monthPerformance__groups {
+  display: grid;
+  align-items: center;
+  padding: 8px 12px 6px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+.monthPerformance__group:nth-child(2) {
+  grid-column: 2 / 4;
+}
+.monthPerformance__group:nth-child(3) {
+  grid-column: 4 / 6;
+  text-align: right;
+}
+.monthTable--performance .monthTable__head {
+  padding-top: 4px;
+}
+.monthTable--performanceOnly .monthPerformance__groups,
+.monthTable--performanceOnly .monthTable__head,
+.monthTable--performanceOnly .monthTable__row,
+.monthTable--performanceOnly .monthTable__foot {
+  grid-template-columns: minmax(0, 1fr) 72px 64px;
+}
+.monthTable--performanceOnly .monthPerformance__group:nth-child(2) {
+  grid-column: 2 / 4;
+  text-align: right;
+}
+.monthPerformance__note {
+  display: grid;
+  gap: 4px;
+}
+.monthTable__kpi {
+  letter-spacing: 0.12em;
+}
+.monthTable__row {
+  border-top: 1px solid var(--hairline);
+  font-size: 11px;
+  letter-spacing: -0.02em;
+}
+.monthTable__foot {
+  border-top: 1px solid #d5d8de;
+  background: var(--panel);
+  font-size: 11px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.monthTable__name {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.monthTable__note {
+  padding: 9px 12px;
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--dim);
+  border-top: 1px solid var(--hairline);
+  background: var(--panel);
+}
+
+/* ---------- Tiempos del mes y tendencia ---------- */
+
+.monthTimes {
+  padding: 0 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.monthTimes__box {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.monthTimes__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--hairline);
+}
+.monthTimes__title {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.monthTimes__span {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--dim);
+  white-space: nowrap;
+}
+.monthTimes__toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 8px 12px 0;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #f2f4f7;
+}
+.monthTimes__toggle button {
+  min-height: 38px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+}
+.monthTimes__toggle button.is-active {
+  color: var(--ink);
+  background: var(--bg);
+  box-shadow: 0 1px 3px rgb(20 23 28 / 14%);
+}
+.monthTimes__chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 10px 12px 0;
+}
+.monthTimes__chart {
+  padding: 8px 8px 6px;
+}
+
+/* La gráfica se veía en el ordenador y NO en el móvil, y el motivo era este:
+   Safari de iOS no deduce la altura de un SVG en línea con `height: auto` a
+   partir de su `viewBox` cuando el contenedor no le da una altura definida
+   —aquí, dentro de una columna flexible—, así que lo colapsaba a cero píxeles
+   y el bloque quedaba vacío sin ningún error.
+
+   La caja reserva la altura por su cuenta con el `padding` en porcentaje, que
+   se mide sobre el ANCHO, y el SVG la rellena. Da el mismo resultado que
+   `aspect-ratio` y funciona en cualquier navegador, que es lo que interesa
+   cuando el fallo solo se ve en un móvil que no se tiene delante.
+
+   La REGLA se queda aquí entera; el componente solo aporta la proporción por
+   `--trend-aspect`, porque depende de cuántas franjas dibuje —un restaurante
+   sin servicio en vehículo se queda en dos—. El respaldo del `var()` es el caso de tres
+   franjas: si alguien envuelve el `div` o pierde el estilo en línea, la
+   gráfica sale con una altura razonable en vez de colapsar a cero. */
+.trendChart {
+  position: relative;
+  width: 100%;
+  padding-bottom: calc(var(--trend-aspect, 0.593) * 100%);
+}
+.trendChart > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* La geometría del gráfico está calibrada a anchos monoespaciados —el margen
+     lateral es "media cifra de tres dígitos"—, así que la pila de reserva
+     importa: la fuente llega de Google y el service worker no la cachea, de
+     modo que sin red el navegador cae a la suya. Con `ui-monospace` cae a una
+     monoespaciada del sistema y las cifras siguen cuadrando. */
+  font-family: var(--mono);
+}
+.trendChart__metrica {
+  fill: var(--muted);
+  letter-spacing: 0.06em;
+}
+.trendChart__obj,
+.trendChart__mesTenue {
+  fill: var(--dim);
+}
+.trendChart__mes {
+  fill: var(--muted);
+}
+.trendChart__linea {
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.trendChart__area {
+  fill: color-mix(in srgb, var(--ink) 7%, transparent);
+  stroke: none;
+}
+.trendChart__punto {
+  fill: var(--ink);
+  stroke: none;
+}
+/* La escalera del objetivo: presente, pero por detrás de la serie. */
+.trendChart__objLinea {
+  stroke: var(--faint);
+  stroke-width: 1;
+}
+.trendChart__anio {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+/* El halo despega la cifra de la escalera del objetivo, que le pasa por debajo
+   justo cuando el mes anda cerca de cumplir. */
+.trendChart__cifra {
+  stroke: var(--bg);
+  stroke-width: 2.4;
+  paint-order: stroke;
+}
+.monthTimes__note {
+  padding: 9px 12px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--dim);
+  border-top: 1px solid var(--hairline);
+  background: var(--panel);
+}
+/* En la vista de conjunto los tiempos NO se promedian entre locales: se
+   enseñan los tres, cada uno contra su propio objetivo. */
+.monthTimes__byLocal {
+  display: flex;
+  flex-direction: column;
+}
+.monthTimes__localRow {
+  display: grid;
+  /* Las tres pastillas se reparten el ancho en vez de llevar una medida fija:
+     "OEPE 165"" no cabe en 64 px y se salía por la derecha a 393 px. */
+  grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  align-items: center;
+  padding: 8px 12px;
+  border-top: 1px solid var(--hairline);
+}
+.monthTimes__localName {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Une lo que no se entiende partido: "+0,3 pp" o "−0,9 % YoY". */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* Cada local con su trío y su tendencia, uno debajo de otro. */
+.monthTimes__local + .monthTimes__local {
+  border-top: 1px solid var(--hairline);
+  padding-top: 4px;
+}
+.monthTimes__local .monthTimes__localName {
+  display: block;
+  padding: 10px 12px 0;
+}

@@ -1,0 +1,11 @@
+.git
+.env
+.env.*
+app/node_modules
+app/dist
+worker/.venv
+worker/.pytest_cache
+worker/.mypy_cache
+worker/.ruff_cache
+__pycache__
+.superpowers

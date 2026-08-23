@@ -1,0 +1,14 @@
+# Servicio de personal: refresca la previsión del día una vez al arrancar.
+#
+# La previsión de un día no cambia durante ese día, así que no tiene sentido
+# pedirla cada pocos minutos. Se ejecuta antes del primer ciclo de venta.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "worker/Dockerfile"
+
+[deploy]
+startCommand = "/app/.venv/bin/restaurant-live-ops-worker workforce"
+# El cron está expresado en UTC; cada instalación debe ajustarlo a su horario.
+cronSchedule = "5 5 * * *"
+restartPolicyType = "NEVER"

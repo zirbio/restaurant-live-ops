@@ -1,0 +1,24 @@
+[build]
+command = "cd app && npm run build"
+publish = "app/dist"
+
+# La PWA es una aplicación de una sola página: cualquier ruta la resuelve
+# index.html. Hace falta para que el enlace mágico de vuelta funcione.
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[[headers]]
+for = "/*"
+  [headers.values]
+  X-Frame-Options = "DENY"
+  X-Content-Type-Options = "nosniff"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+
+# El service worker nunca se cachea: si se quedara pegado, la app no se
+# actualizaría nunca y los gerentes verían una versión vieja.
+[[headers]]
+for = "/sw.js"
+  [headers.values]
+  Cache-Control = "no-cache"
