@@ -56,6 +56,7 @@ def test_ci_runs_local_supabase_security_and_release_mechanics_without_private_i
         "uv run --python 3.12 ruff format --check .",
         "uv run --python 3.12 mypy",
         "uv run --python 3.12 pytest -q",
+        "uv tool install pre-commit==4.6.1",
         "docker build --no-cache --tag restaurant-live-ops-worker:ci .",
     }
     assert {step.get("run") for step in app_steps} >= {
@@ -87,6 +88,16 @@ def test_ci_runs_local_supabase_security_and_release_mechanics_without_private_i
         "scripts/check_repository_hygiene.py --git-archive .",
     }
     assert {step.get("run") for step in security_steps} >= hygiene_commands
+    leak_index = next(
+        i
+        for i, step in enumerate(security_steps)
+        if "gitleaks/gitleaks-action@" in step.get("uses", "")
+    )
+    assert all(
+        i < leak_index
+        for i, step in enumerate(security_steps)
+        if step.get("run") in hygiene_commands
+    )
 
 
 def test_pre_commit_config_is_valid_pinned_and_does_not_recurse_into_release_gate() -> None:
